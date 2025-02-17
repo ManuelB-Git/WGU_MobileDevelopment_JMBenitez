@@ -19,14 +19,39 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame BorderColor="LightGray" Padding="10" Margin="5">
-                        <StackLayout>
-                            <Label x:Name="TermTitle" 
+                        <StackLayout Spacing="10">
+                            <Label Text="{Binding Title}" 
                                    FontSize="18" 
                                    FontAttributes="Bold"/>
-                            <Label x:Name="TermStartDate"
-                                   FontSize="14" />
-                            <Label x:Name="TermEndDate" 
-                                   FontSize="14" />
+
+
+                            <Grid HorizontalOptions="FillAndExpand"
+                                  ColumnDefinitions="*,*"
+                                  Margin="10">
+                                                <Label Text="Start Date"
+                                                       Grid.Column="0"
+                                                       HorizontalOptions="Start" />
+
+                                                <Label Text="{Binding StartDate, StringFormat='{0:d}'}"
+                                                       Grid.Column="1"
+                                                       HorizontalOptions="End"
+                                                FontSize="14" />
+                            </Grid>
+
+                            <Grid HorizontalOptions="FillAndExpand"
+      ColumnDefinitions="*,*"
+      Margin="10">
+                                <Label Text="Start Date"
+                           Grid.Column="0"
+                           HorizontalOptions="Start" />
+
+                                <Label Text="{Binding EndDate, StringFormat='{0:d}'}"
+                           Grid.Column="1"
+                           HorizontalOptions="End"
+                    FontSize="14" />
+                            </Grid>
+
+
                         </StackLayout>
                     </Frame>
                 </DataTemplate>

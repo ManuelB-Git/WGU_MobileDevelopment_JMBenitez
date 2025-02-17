@@ -172,7 +172,64 @@ namespace WGU_MobileDevelopment_JMBenitez.Services
 
 
 
-      
+        public static async Task SeedDataAsync()
+        {
+            await Init();
+
+            //Check if there are any terms
+            var terms = await GetTermsAsync();
+
+            if(terms.Count == 0)
+            {
+                //Create on term
+                var term = new Term
+                {
+                    Title = "Term 1",
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now.AddDays(120)
+                };
+
+                await AddTermAsync(term);
+
+                //Create one course for the term
+                var course = new Course
+                {
+                    TermId = term.Id,
+                    Title = "Introduction to Software Engineering",
+                    StartDate = DateTime.Today,
+                    EndDate = DateTime.Today.AddMonths(4),
+                    Status = "In Progress",
+                    InstructorName = "Anika Patel",
+                    InstructorPhone = "555-123-4567",
+                    InstructorEmail = "anika.patel@strimeuniversity.edu",
+                    Notes = "Remember to review the syllabus."
+                };
+                await AddCourseAsync(course);
+
+
+                // Create two assessments for this course: one objective and one performance.
+                var objectiveAssessment = new Assessment
+                {
+                    CourseId = course.Id,
+                    Type = AssessmentType.Objective,
+                    Name = "Objective Test",
+                    DueDate = DateTime.Today.AddMonths(2)
+                };
+
+                var performanceAssessment = new Assessment
+                {
+                    CourseId = course.Id,
+                    Type = AssessmentType.Performance,
+                    Name = "Performance Project",
+                    DueDate = DateTime.Today.AddMonths(3)
+                };
+
+                await AddAssessmentAsync(objectiveAssessment);
+                await AddAssessmentAsync(performanceAssessment);
+            }
+
+
+        }
 
     }
 }
