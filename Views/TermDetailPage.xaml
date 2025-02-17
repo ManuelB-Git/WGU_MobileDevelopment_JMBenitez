@@ -6,20 +6,26 @@
     <VerticalStackLayout >
 
         <HorizontalStackLayout Spacing="10" Margin="10" HorizontalOptions="EndAndExpand">
+            <Button Text="Add Course"
+                    x:Name="AddCourseBtn"
+                    Clicked="AddCourseBtn_Clicked"/>   
+            <Button Text="Edit Term"
+             x:Name="EditTermBtn"
+             Clicked="EditTermBtn_Clicked"/>
             <Button Text="Delete Term"
                 x:Name="DeleteTermBtn"
                 Clicked="DeleteTermBtn_Clicked"/>
 
-            <Button Text="Edit Term"
-                    x:Name="EditTermBtn"
-                    Clicked="EditTermBtn_Clicked"/>
+       
         </HorizontalStackLayout>
 
         <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
 
 
 
-        <ListView x:Name="CoursesCollectionView">
+        <ListView x:Name="CoursesCollectionView"
+                  ItemSelected="CoursesCollectionView_ItemSelected"
+                  ItemTapped="CoursesCollectionView_ItemTapped">
 
             <ListView.ItemTemplate>
                 <DataTemplate>

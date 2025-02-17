@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WGU_MobileDevelopment_JMBenitez.Views"
+             x:Class="WGU_MobileDevelopment_JMBenitez.Views.EditCoursePage"
+             Title="Edit Course">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
+            <Label Text="Title" />
+            <Entry x:Name="TitleEntry" Placeholder="Enter course title" Text="{Binding Title}" />
+
+            <Label Text="Start Date" />
+            <DatePicker x:Name="StartDatePicker" Date="{Binding StartDate}" />
+
+            <Label Text="End Date" />
+            <DatePicker x:Name="EndDatePicker" Date="{Binding EndDate}" />
+
+            <Label Text="Status" />
+            <Picker x:Name="StatusPicker" SelectedItem="{Binding Status}">
+                <Picker.Items>
+                    <x:String>Planned</x:String>
+                    <x:String>In Progress</x:String>
+                    <x:String>Completed</x:String>
+                    <x:String>Dropped</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Label Text="Instructor Name" />
+            <Entry x:Name="InstructorNameEntry" Placeholder="Enter instructor name" Text="{Binding InstructorName}" />
+
+            <Label Text="Instructor Phone" />
+            <Entry x:Name="InstructorPhoneEntry" Placeholder="Enter instructor phone" Keyboard="Telephone" Text="{Binding InstructorPhone}" />
+
+            <Label Text="Instructor Email" />
+            <Entry x:Name="InstructorEmailEntry" Placeholder="Enter instructor email" Keyboard="Email" Text="{Binding InstructorEmail}" />
+
+            <Label Text="Notes" />
+            <Entry x:Name="NotesEditor" Placeholder="Enter notes"  Text="{Binding Notes}" />
+
+            <Button Text="Save" VerticalOptions="End" HorizontalOptions="Center"  Clicked="Button_Clicked"   />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+    
+    
+    

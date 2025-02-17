@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WGU_MobileDevelopment_JMBenitez.Views.CourseDetailPage"
+             Title="CourseDetailPage">
+
+    <VerticalStackLayout >
+        <HorizontalStackLayout Spacing="10" Margin="10" HorizontalOptions="EndAndExpand">
+            <Button Text="Add Assessment"
+                    x:Name="AddAssessmentBtn"
+                    Clicked="AddAssessmentBtn_Clicked" />
+            <Button Text="Edit Course"
+             x:Name="EditCourseBtn"
+             Clicked="EditCourseBtn_Clicked"/>
+            <Button Text="Delete Course"
+                x:Name="DeleteCourseBtn"
+                Clicked="DeleteCourseBtn_Clicked"/>
+        </HorizontalStackLayout>
+        <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
+        <StackLayout>
+            <Label Text="{Binding Title}" 
+                   FontSize="18" 
+                   FontAttributes="Bold"/>
+            <HorizontalStackLayout Spacing="50">
+                <Label Text="{Binding StartDate, StringFormat='Start: {0:d}'}"/>
+                <Label Text="{Binding EndDate, StringFormat='End: {0:d}'}"/>
+            </HorizontalStackLayout>
+        </StackLayout>
+        <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
+        <Label Text="Course Status"/>
+        <Label Text="{Binding Status}"/>
+        <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
+        <Label Text="Course Instructor"/>
+        <Label Text="{Binding InstructorName}"/>
+        <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
+        <Label Text="Instructor Phone"/>
+        <Label Text="{Binding InstructorPhone}"/>
+        <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
+        <Label Text="Instructor Email"/>
+        <Label Text="{Binding InstructorEmail}"/>
+        <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
+        <Label Text="Course Notes"/>
+        <Label Text="{Binding Notes}"/>
+        <Button Text="Share Notes"
+                x:Name="ShareNotesBtn"
+                Clicked ="ShareNotesBtn_Clicked"/>
+        <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
+
+        <Button Text="Assessments"/>
+        <Label
+            x:Name="AssessmentNotification"/>
+    </VerticalStackLayout>
+
+</ContentPage>
+    
+    

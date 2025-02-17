@@ -69,4 +69,32 @@ public partial class TermDetailPage : ContentPage
          await Navigation.PushAsync(new EditTermPage(TermSent));
 
     }
+
+
+    //Navigate to AddCoursePage, passing the term to add a course to
+    private async void AddCourseBtn_Clicked(object sender, EventArgs e)
+    {
+
+        await Navigation.PushAsync(new AddCoursePage(TermSent));
+
+    }
+
+    //Navigate to CourseDetailPage, passing the course to view
+    private void CoursesCollectionView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        if (e.SelectedItem == null)
+        {
+            return;
+        }
+        Course course = (Course)e.SelectedItem;
+        Navigation.PushAsync(new CourseDetailPage(course));
+
+    }
+
+    //Clearing the selected item
+    private void CoursesCollectionView_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+
+
+    }
 }

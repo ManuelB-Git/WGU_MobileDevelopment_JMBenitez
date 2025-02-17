@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WGU_MobileDevelopment_JMBenitez.Views.AddCoursePage"
+             Title="AddCoursePage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20"
+                             Spacing="20"
+                             HorizontalOptions="Center">
+            <HorizontalStackLayout Spacing="20">
+                <Label Text="Course Title"
+                       VerticalOptions="Center"/>
+                <Entry  x:Name="CourseTitleEntry"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand"/>
+            </HorizontalStackLayout >
+            <HorizontalStackLayout Spacing="20">
+                <Label Text="Course Start Date"
+                       VerticalOptions="Center"/>
+                <DatePicker x:Name="StartDateEntry"
+                            VerticalOptions="Center"
+                            HorizontalOptions="FillAndExpand"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="20">
+                <Label Text="Course End Date"
+                       VerticalOptions="Center"/>
+                <DatePicker x:Name="EndDateEntry"
+                            VerticalOptions="Center"
+                            HorizontalOptions="FillAndExpand"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="20">
+                <Label Text="Course Status"
+                       VerticalOptions="Center"/>
+                <Picker x:Name="StatusPicker"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand">
+                    <Picker.Items>
+                        <x:String>Not Started</x:String>
+                        <x:String>In Progress</x:String>
+                        <x:String>Completed</x:String>
+                        <x:String>Dropped</x:String>
+                    </Picker.Items>
+                </Picker>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="20">
+                <Label Text="Course Instructor"
+                       VerticalOptions="Center"/>
+                <Entry  x:Name="InstructorEntry"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="20">
+                <Label Text="Instructor Phone"
+                       VerticalOptions="Center"/>
+                <Entry  x:Name="InstructorPhoneEntry"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="20">
+                <Label Text="Instructor Email"
+                       VerticalOptions="Center"/>
+                <Entry  x:Name="InstructorEmailEntry"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="20">
+                <Label Text="Notes"
+                       VerticalOptions="Center"/>
+                <Entry x:Name="NotesEntry"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand"
+                        WidthRequest="200"
+                        HeightRequest="50"/>
+            </HorizontalStackLayout>
+            
+            <Button 
+                x:Name="SaveBtn"
+                Text="Save"
+                VerticalOptions="End"
+                HorizontalOptions="Center"
+                Clicked="SaveBtn_Clicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>
+    
+    
