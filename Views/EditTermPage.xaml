@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WGU_MobileDevelopment_JMBenitez.Views.EditTermPage"
+             Title="EditTermPage">
+    <VerticalStackLayout Padding="20"
+                         Spacing="50"
+                         HorizontalOptions="Center">
+        <HorizontalStackLayout Spacing="20">
+            <Label Text="Term Title"
+                   VerticalOptions="Center"/>
+            <Entry  x:Name="TermTitleEntry"
+                    VerticalOptions="Center"/>
+        </HorizontalStackLayout >
+        <HorizontalStackLayout Spacing="20">
+            <Label Text="Term Start Date"
+                   VerticalOptions="Center"/>
+            <DatePicker x:Name="StartDateEntry"
+                        VerticalOptions="Center"/>
+
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="20">
+            <Label Text="Term End Date"
+                   VerticalOptions="Center"/>
+            <DatePicker x:Name="EndDateEntry"
+                        VerticalOptions="Center"/>
+        </HorizontalStackLayout>
+        <Button 
+            x:Name="SaveBtn"
+            Text="Save"
+            Clicked="SaveBtn_Clicked"/>
+
+    </VerticalStackLayout>
+</ContentPage>

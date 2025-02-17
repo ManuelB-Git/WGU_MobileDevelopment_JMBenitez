@@ -3,7 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WGU_MobileDevelopment_JMBenitez.Views.TermDetailPage"
              Title="TermDetailPage">
-    <VerticalStackLayout>
+    <VerticalStackLayout >
+
+        <HorizontalStackLayout Spacing="10" Margin="10" HorizontalOptions="EndAndExpand">
+            <Button Text="Delete Term"
+                x:Name="DeleteTermBtn"
+                Clicked="DeleteTermBtn_Clicked"/>
+
+            <Button Text="Edit Term"
+                    x:Name="EditTermBtn"
+                    Clicked="EditTermBtn_Clicked"/>
+        </HorizontalStackLayout>
+
+        <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
+
 
 
         <ListView x:Name="CoursesCollectionView">
