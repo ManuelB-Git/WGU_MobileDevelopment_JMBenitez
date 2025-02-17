@@ -13,6 +13,7 @@ namespace WGU_MobileDevelopment_JMBenitez
         public MainPage()
         {
             InitializeComponent();
+
             TermsCollectionView.ItemsSource = Terms;
         }
 
@@ -25,6 +26,7 @@ namespace WGU_MobileDevelopment_JMBenitez
             {
                 Terms.Add(term);
             }
+
         }
 
         //When the page appears, refresh the page.
@@ -32,6 +34,7 @@ namespace WGU_MobileDevelopment_JMBenitez
         {
             base.OnAppearing();
             await LoadTermsAsync();
+
         }
 
         // Method for the add term button. This will navigate to the AddTermPage.
@@ -39,6 +42,31 @@ namespace WGU_MobileDevelopment_JMBenitez
         {
             await Navigation.PushAsync(new AddTermPage());
         }
+
+
+        //Method will go to the TermDetailPage and pass the selected term.
+
+        private void TermsCollectionView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem is Term term)
+            {
+                Navigation.PushAsync(new TermDetailPage(term));
+            }
+
+        }
+
+        //Method will clear the selected item.
+        private void TermsCollectionView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            TermsCollectionView.SelectedItem = null;
+
+        }
+
+
+
+
+
+
     }
 
 }

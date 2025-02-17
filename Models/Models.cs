@@ -9,6 +9,7 @@ namespace WGU_MobileDevelopment_JMBenitez.Models
         public string Title { get; set; } = string.Empty;
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+
     }
 
     public class Course
@@ -24,6 +25,7 @@ namespace WGU_MobileDevelopment_JMBenitez.Models
         public string InstructorPhone { get; set; } = string.Empty;
         public string InstructorEmail { get; set; } = string.Empty;
         public string Notes { get; set; } = string.Empty;
+
     }
 
     public enum AssessmentType

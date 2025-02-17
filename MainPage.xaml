@@ -2,68 +2,52 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:models="clr-namespace:WGU_MobileDevelopment_JMBenitez.Models"
+             xmlns:services="clr-namespace:WGU_MobileDevelopment_JMBenitez.Services"
+
+
              x:Class="WGU_MobileDevelopment_JMBenitez.MainPage">
 
-        <VerticalStackLayout Margin="20"
-                             Spacing="20">
-            <Button
-                x:Name="AddTermBtn"
-                HorizontalOptions="End"
-                Text="Add Term"
-                Clicked="AddTermBtn_Clicked"/>
-            
-            
-            <Label Text="Terms"/>
+    <VerticalStackLayout Margin="20"
+                         Spacing="20">
+        <Button
+            x:Name="AddTermBtn"
+            HorizontalOptions="End"
+            Text="Add Term"
+            Clicked="AddTermBtn_Clicked"/>
+        
+        <Label Text="Terms"/>
 
-        <CollectionView x:Name="TermsCollectionView">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame BorderColor="LightGray" Padding="10" Margin="5">
-                        <StackLayout Spacing="10">
+        <ListView  x:Name="TermsCollectionView"
+                  ItemSelected="TermsCollectionView_ItemSelected"
+                  ItemTapped="TermsCollectionView_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate >
+
+                    <ViewCell>
+                        <StackLayout>
+                            <StackLayout >
+                                
+                                
                             <Label Text="{Binding Title}" 
                                    FontSize="18" 
                                    FontAttributes="Bold"/>
 
+                                <HorizontalStackLayout Spacing="50">
+                                    <Label Text="{Binding StartDate, StringFormat='Start: {0:d}'}"/>
+                                    <Label Text="{Binding EndDate, StringFormat='Start: {0:d}'}"/>
+                                </HorizontalStackLayout>
 
-                            <Grid HorizontalOptions="FillAndExpand"
-                                  ColumnDefinitions="*,*"
-                                  Margin="10">
-                                                <Label Text="Start Date"
-                                                       Grid.Column="0"
-                                                       HorizontalOptions="Start" />
+                        
 
-                                                <Label Text="{Binding StartDate, StringFormat='{0:d}'}"
-                                                       Grid.Column="1"
-                                                       HorizontalOptions="End"
-                                                FontSize="14" />
-                            </Grid>
-
-                            <Grid HorizontalOptions="FillAndExpand"
-      ColumnDefinitions="*,*"
-      Margin="10">
-                                <Label Text="Start Date"
-                           Grid.Column="0"
-                           HorizontalOptions="Start" />
-
-                                <Label Text="{Binding EndDate, StringFormat='{0:d}'}"
-                           Grid.Column="1"
-                           HorizontalOptions="End"
-                    FontSize="14" />
-                            </Grid>
-
-
+                                
+                            </StackLayout>
                         </StackLayout>
-                    </Frame>
+
+                    </ViewCell>
+                    
                 </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
-
-
-
-
-
+            </ListView.ItemTemplate>
+        </ListView>
     </VerticalStackLayout>
-   
-
 </ContentPage>

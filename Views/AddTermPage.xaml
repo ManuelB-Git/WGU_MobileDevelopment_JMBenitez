@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="WGU_MobileDevelopment_JMBenitez.Views.AddTermPage"
              Title="New Term">
     <VerticalStackLayout Padding="20"
@@ -9,18 +10,21 @@
         <HorizontalStackLayout Spacing="20">
             <Label Text="Term Title"
                    VerticalOptions="Center"/>
-            <Entry VerticalOptions="Center"/>
+            <Entry  x:Name="TermTitleEntry"
+                    VerticalOptions="Center"/>
         </HorizontalStackLayout >
         <HorizontalStackLayout Spacing="20">
             <Label Text="Term Start Date"
                    VerticalOptions="Center"/>
-            <DatePicker VerticalOptions="Center"/>
+            <DatePicker x:Name="StartDateEntry"
+                        VerticalOptions="Center"/>
 
         </HorizontalStackLayout>
         <HorizontalStackLayout Spacing="20">
             <Label Text="Term End Date"
                    VerticalOptions="Center"/>
-            <DatePicker VerticalOptions="Center"/>
+            <DatePicker x:Name="EndDateEntry"
+                        VerticalOptions="Center"/>
         </HorizontalStackLayout>
         <Button 
             x:Name="SaveBtn"

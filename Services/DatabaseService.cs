@@ -73,7 +73,7 @@ namespace WGU_MobileDevelopment_JMBenitez.Services
         }
 
 
-        //Get course by term
+        //Get list of courses of the term
         public static async Task<List<Course>> GetCoursesByTermAsync(int termId)
         {
             await Init();
@@ -83,6 +83,8 @@ namespace WGU_MobileDevelopment_JMBenitez.Services
             }
             return await _database.Table<Course>().Where(c => c.TermId == termId).ToListAsync();
         }
+
+
 
 
         //Add a course

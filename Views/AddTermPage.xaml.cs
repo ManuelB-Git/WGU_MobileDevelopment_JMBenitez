@@ -1,14 +1,27 @@
+using WGU_MobileDevelopment_JMBenitez.Models;
+using WGU_MobileDevelopment_JMBenitez.Services;
 namespace WGU_MobileDevelopment_JMBenitez.Views;
+
 
 public partial class AddTermPage : ContentPage
 {
-	public AddTermPage()
-	{
-		InitializeComponent();
-	}
+    //Term class from models.
+    public Term Term { get; set; } = new Term();
 
-    private void SaveBtn_Clicked(object sender, EventArgs e)
+    public AddTermPage()
     {
-		return;
+        InitializeComponent();
+    }
+
+    private async void SaveBtn_Clicked(object sender, EventArgs e)
+    {
+        Term.Title = TermTitleEntry.Text;
+        Term.StartDate = StartDateEntry.Date;
+        Term.EndDate = EndDateEntry.Date;
+
+
+        await DatabaseService.AddTermAsync(Term);
+
+        await Navigation.PopAsync();
     }
 }

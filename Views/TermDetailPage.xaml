@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WGU_MobileDevelopment_JMBenitez.Views.TermDetailPage"
+             Title="TermDetailPage">
+    <VerticalStackLayout>
+
+
+        <ListView x:Name="CoursesCollectionView">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <StackLayout>
+                                <Label Text="{Binding Title}" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold"/>
+                                <HorizontalStackLayout Spacing="50">
+                                    <Label Text="{Binding StartDate, StringFormat='Start: {0:d}'}"/>
+                                    <Label Text="{Binding EndDate, StringFormat='End: {0:d}'}"/>
+                                </HorizontalStackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+
+    </VerticalStackLayout>
+</ContentPage>
