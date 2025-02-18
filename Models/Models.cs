@@ -38,8 +38,11 @@ namespace WGU_MobileDevelopment_JMBenitez.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public int CourseId { get; set; }  // Foreign key to Course
-        public AssessmentType Type { get; set; }
+        public string Type { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public DateTime DueDate { get; set; }
+
+        public string AssessmentTypeText => Type.ToString();
+
     }
 }

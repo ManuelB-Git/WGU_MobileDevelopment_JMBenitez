@@ -30,12 +30,7 @@ namespace WGU_MobileDevelopment_JMBenitez
         }
 
         //When the page appears, refresh the page.
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-            await LoadTermsAsync();
 
-        }
 
         // Method for the add term button. This will navigate to the AddTermPage.
         private async void AddTermBtn_Clicked(object sender, EventArgs e)
@@ -60,6 +55,11 @@ namespace WGU_MobileDevelopment_JMBenitez
         {
             TermsCollectionView.SelectedItem = null;
 
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            LoadTermsAsync().ConfigureAwait(false);
         }
 
 

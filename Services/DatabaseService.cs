@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using Microsoft.VisualBasic;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -213,7 +214,7 @@ namespace WGU_MobileDevelopment_JMBenitez.Services
                 var objectiveAssessment = new Assessment
                 {
                     CourseId = course.Id,
-                    Type = AssessmentType.Objective,
+                    Type = "Objective",
                     Name = "Objective Test",
                     DueDate = DateTime.Today.AddMonths(2)
                 };
@@ -221,9 +222,9 @@ namespace WGU_MobileDevelopment_JMBenitez.Services
                 var performanceAssessment = new Assessment
                 {
                     CourseId = course.Id,
-                    Type = AssessmentType.Performance,
+                    Type = "Performance",
                     Name = "Performance Project",
-                    DueDate = DateTime.Today.AddMonths(3)
+                    DueDate = DateTime.Today.AddMonths(2)
                 };
 
                 await AddAssessmentAsync(objectiveAssessment);

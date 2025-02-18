@@ -13,17 +13,18 @@ public partial class TermDetailPage : ContentPage
     {
         InitializeComponent();
         TermSent = term;
-        OnAppearing();
         CoursesCollectionView.ItemsSource = Courses;
-
     }
 
-
-
-    //Populate courses from term into Courses list
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
+        OnAppearingAsync();
+    }
+
+    //Populate courses from term into Courses list
+    private async void OnAppearingAsync()
+    {
         var coursesFromDb = await DatabaseService.GetCoursesByTermAsync(TermSent.Id);
         Courses.Clear();
         foreach (var course in coursesFromDb)
@@ -32,8 +33,7 @@ public partial class TermDetailPage : ContentPage
         }
     }
 
-
-    //Delete the tern with a confirmation
+    //Delete the term with a confirmation
     private async void DeleteTermBtn_Clicked(object sender, EventArgs e)
     {
         bool firstAnswer = await DisplayAlert("Delete Term", "Are you sure you want to delete this term?", "Yes", "No");
@@ -61,22 +61,16 @@ public partial class TermDetailPage : ContentPage
         }
     }
 
-
-
     //Navigate to EditTermPage, passing the term to edit
     private async void EditTermBtn_Clicked(object sender, EventArgs e)
     {
-         await Navigation.PushAsync(new EditTermPage(TermSent));
-
+        await Navigation.PushAsync(new EditTermPage(TermSent));
     }
-
 
     //Navigate to AddCoursePage, passing the term to add a course to
     private async void AddCourseBtn_Clicked(object sender, EventArgs e)
     {
-
         await Navigation.PushAsync(new AddCoursePage(TermSent));
-
     }
 
     //Navigate to CourseDetailPage, passing the course to view
@@ -88,13 +82,10 @@ public partial class TermDetailPage : ContentPage
         }
         Course course = (Course)e.SelectedItem;
         Navigation.PushAsync(new CourseDetailPage(course));
-
     }
 
     //Clearing the selected item
     private void CoursesCollectionView_ItemTapped(object sender, ItemTappedEventArgs e)
     {
-
-
     }
 }

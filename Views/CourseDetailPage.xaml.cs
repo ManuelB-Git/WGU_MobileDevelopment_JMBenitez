@@ -1,5 +1,6 @@
 using WGU_MobileDevelopment_JMBenitez.Models;
 using WGU_MobileDevelopment_JMBenitez.Services;
+using WGU_MobileDevelopment_JMBenitez.Views;
 
 namespace WGU_MobileDevelopment_JMBenitez.Views;
 
@@ -11,6 +12,8 @@ public partial class CourseDetailPage : ContentPage
     {
         InitializeComponent();
         this.course = course;
+        OnAppearing();
+
     }
 
     protected override void OnAppearing()
@@ -21,6 +24,7 @@ public partial class CourseDetailPage : ContentPage
 
     private void AddAssessmentBtn_Clicked(object sender, EventArgs e)
     {
+        Navigation.PushAsync(new AddAssesspementPage(course));
     }
 
     private async void EditCourseBtn_Clicked(object sender, EventArgs e)
@@ -35,6 +39,7 @@ public partial class CourseDetailPage : ContentPage
         {
             await DatabaseService.DeleteCourseAsync(course);
         }
+        await Navigation.PopAsync();
     }
 
     // Uses the Share Plugin to share the notes.
@@ -50,5 +55,12 @@ public partial class CourseDetailPage : ContentPage
             Text = text,
             Title = "Share Notes"
         });
+    }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new AssessmentDetailPage(course));
+
+
     }
 }

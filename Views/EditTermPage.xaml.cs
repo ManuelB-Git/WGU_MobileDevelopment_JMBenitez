@@ -15,15 +15,13 @@ public partial class EditTermPage : ContentPage
         OnAppearing();
     }
 
-
-    //Populate the fields with the term's data
+    // Populate the fields with the term's data
     protected override void OnAppearing()
     {
         base.OnAppearing();
         TermTitleEntry.Text = TermToEdit.Title;
         StartDateEntry.Date = TermToEdit.StartDate;
         EndDateEntry.Date = TermToEdit.EndDate;
-
     }
 
     private async void SaveBtn_Clicked(object sender, EventArgs e)

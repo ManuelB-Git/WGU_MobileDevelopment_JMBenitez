@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WGU_MobileDevelopment_JMBenitez.Views.AssessmentDetailPage"
+             Title="AssessmentDetailPage">
+    <VerticalStackLayout Padding="10">
+
+        <ListView x:Name="AssessmentsCollectionView" HasUnevenRows="true">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout VerticalOptions="StartAndExpand"
+                                     Padding="20">
+                            <HorizontalStackLayout>
+                                <Label Text="Assessment Name: "
+                                       FontAttributes ="Bold"/>
+                                <Label Text="{Binding Name}"/>
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout>
+                                <Label Text="Assessement Type: "
+                                       FontAttributes ="Bold"/>
+                                <Label Text="{Binding Type}"/>    
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout>
+                                <Label Text="Due Date: "
+                                       FontAttributes ="Bold"/>
+                                <Label Text="{Binding DueDate, StringFormat='{}End: {0:d}'}"/>
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout>
+                                <Button Text="Edit"
+                                        x:Name="EditBtn"
+                                        Clicked="EditBtn_Clicked"/>
+                                <Button Text="Delete"
+                                        x:Name="DeleteBtn"
+                                        Clicked="DeleteBtn_Clicked"/>
+                            </HorizontalStackLayout>
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </VerticalStackLayout>
+
+</ContentPage>
+    

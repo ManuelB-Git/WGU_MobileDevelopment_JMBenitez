@@ -46,7 +46,7 @@
                 Clicked ="ShareNotesBtn_Clicked"/>
         <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
 
-        <Button Text="Assessments"/>
+        <Button Text="Assessments" Clicked="Button_Clicked"/>
         <Label
             x:Name="AssessmentNotification"/>
     </VerticalStackLayout>
