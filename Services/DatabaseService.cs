@@ -108,6 +108,7 @@ namespace WGU_MobileDevelopment_JMBenitez.Services
             {
                 throw new InvalidOperationException("Database not initialized.");
             }
+
             await _database.UpdateAsync(course);
         }
 
@@ -144,6 +145,7 @@ namespace WGU_MobileDevelopment_JMBenitez.Services
             {
                 throw new InvalidOperationException("Database not initialized.");
             }
+
             await _database.InsertAsync(assessment);
         }
 
@@ -156,6 +158,7 @@ namespace WGU_MobileDevelopment_JMBenitez.Services
             {
                 throw new InvalidOperationException("Database not initialized.");
             }
+
             await _database.UpdateAsync(assessment);
         }
 
@@ -188,7 +191,7 @@ namespace WGU_MobileDevelopment_JMBenitez.Services
                 var term = new Term
                 {
                     Title = "Term 1",
-                    StartDate = DateTime.Now,
+                    StartDate = DateTime.Now.AddDays(1),
                     EndDate = DateTime.Now.AddDays(120)
                 };
 
@@ -226,6 +229,8 @@ namespace WGU_MobileDevelopment_JMBenitez.Services
                     Name = "Performance Project",
                     DueDate = DateTime.Today.AddMonths(2)
                 };
+
+
 
                 await AddAssessmentAsync(objectiveAssessment);
                 await AddAssessmentAsync(performanceAssessment);

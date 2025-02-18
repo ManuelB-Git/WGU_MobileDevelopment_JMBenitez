@@ -6,7 +6,7 @@ namespace WGU_MobileDevelopment_JMBenitez.Views;
 public partial class AddAssesspementPage : ContentPage
 {
     private Course course;
-    Assessment? assessment; // Nullable assessment
+    Assessment? assessment; 
 
     public AddAssesspementPage(Course course)
     {
@@ -28,11 +28,7 @@ public partial class AddAssesspementPage : ContentPage
             return;
         }
 
-        if (AssessmentDate.Date >= course.EndDate)
-        {
-            await DisplayAlert("Validation Error", "Assessment due date must be before the course end date.", "OK");
-            return;
-        }
+
 
         assessment = new Assessment
         {
@@ -43,11 +39,10 @@ public partial class AddAssesspementPage : ContentPage
         };
 
         await DatabaseService.AddAssessmentAsync(assessment);
+
+
         await Navigation.PopAsync();
     }
 
-    // Unused event handler – can be removed or implemented as needed.
-    private void Button_Clicked_1(object sender, EventArgs e)
-    {
-    }
+
 }

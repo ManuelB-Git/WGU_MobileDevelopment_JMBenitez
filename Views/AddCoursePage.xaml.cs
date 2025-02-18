@@ -13,7 +13,7 @@ public partial class AddCoursePage : ContentPage
     {
         InitializeComponent();
         TermToAddCourseTo = term;
-        CourseToAdd = new Course(); // Assuming a default constructor exists
+        CourseToAdd = new Course(); 
     }
 
     private async void SaveBtn_Clicked(object sender, EventArgs e)
@@ -64,5 +64,7 @@ public partial class AddCoursePage : ContentPage
         // Save to database
         await DatabaseService.AddCourseAsync(CourseToAdd);
         await Navigation.PopAsync();
+
+
     }
 }

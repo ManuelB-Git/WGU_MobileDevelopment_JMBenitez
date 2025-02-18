@@ -13,9 +13,11 @@ public partial class CourseDetailPage : ContentPage
         this.course = course;
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
+        var courses = await DatabaseService.GetCoursesByTermAsync(course.TermId);
+        course = courses.FirstOrDefault(c => c.Id == course.Id) ?? course;
         BindingContext = course;
     }
 

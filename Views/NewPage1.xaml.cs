@@ -13,7 +13,6 @@ public partial class NewPage1 : ContentPage
         assessmenttoedit = assessment;
         BindingContext = assessmenttoedit;
 
-        // Populate the fields with the current assessment values.
         AssessmentTitle.Text = assessmenttoedit.Name;
         AssessmentTypePicker.SelectedItem = assessmenttoedit.Type;
         AssessmentDate.Date = assessmenttoedit.DueDate;
@@ -31,18 +30,14 @@ public partial class NewPage1 : ContentPage
             await DisplayAlert("Validation Error", "Please select an assessment type.", "OK");
             return;
         }
-        // If you need to check against the course's end date, consider using an external value.
-        // The current check compares the new date with the existing due date.
-        if (AssessmentDate.Date >= assessmenttoedit.DueDate)
-        {
-            await DisplayAlert("Validation Error", "Assessment due date must be before the current due date.", "OK");
-            return;
-        }
+
+
 
         assessmenttoedit.Name = AssessmentTitle.Text;
         assessmenttoedit.Type = AssessmentTypePicker.SelectedItem?.ToString() ?? string.Empty;
         assessmenttoedit.DueDate = AssessmentDate.Date;
         await DatabaseService.UpdateAssessmentAsync(assessmenttoedit);
+
         await Navigation.PopAsync();
     }
 }

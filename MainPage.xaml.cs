@@ -60,6 +60,8 @@ namespace WGU_MobileDevelopment_JMBenitez
         {
             base.OnAppearing();
             await LoadTermsAsync();
+            NotificationService.ScheduleNotification();
+
         }
     }
 }
