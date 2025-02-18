@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Maui;
+using Plugin.LocalNotification;
 using Microsoft.Extensions.Logging;
+
 
 namespace WGU_MobileDevelopment_JMBenitez
 {
@@ -10,7 +12,8 @@ namespace WGU_MobileDevelopment_JMBenitez
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-                .UseMauiCommunityToolkit() // Added this line to chain UseMauiCommunityToolkit
+                .UseLocalNotification() 
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
