@@ -1,43 +1,89 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WGU_MobileDevelopment_JMBenitez.Views.NewPage1"
-             Title="NewPage1">
-    <VerticalStackLayout Padding="10">
-        <Label 
-        Text="Add New Assessment"
-        FontSize="24"
-        HorizontalOptions="Center" />
-        <Label 
-        Text="Assessment Title"
-        FontSize="18"
-        Margin="0,10,0,0" />
-        <Entry 
-        Placeholder="Assessment Title"
-        x:Name="AssessmentTitle"
-        Margin="0,10,0,0" />
-        <Label 
-        Text="Assessment Date"
-        FontSize="18"
-        Margin="0,10,0,0" />
-        <DatePicker 
-        x:Name="AssessmentDate"
-        Margin="0,10,0,0" />
-        <Label 
-        Text="Assessment Type"
-        FontSize="18"
-        Margin="0,10,0,0" />
-        <Picker x:Name="AssessmentTypePicker">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Objective</x:String>
-                    <x:String>Performance</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
-        <Button 
-        Text="Save Assessment"
-        Margin="0,20,0,0"
-        Clicked="Button_Clicked" />
-    </VerticalStackLayout>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="WGU_MobileDevelopment_JMBenitez.Views.NewPage1"
+    Title="Edit Assessment">
+
+    <ContentPage.Resources>
+        <!-- Header label style -->
+        <Style x:Key="HeaderLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="TextColor" Value="#007AFF" />
+            <Setter Property="Margin" Value="0,0,0,20" />
+        </Style>
+        <!-- Field label style -->
+        <Style x:Key="FieldLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="TextColor" Value="#333" />
+            <Setter Property="Margin" Value="0,10,0,0" />
+        </Style>
+        <!-- Entry style -->
+        <Style x:Key="EntryStyle" TargetType="Entry">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextColor" Value="#333" />
+            <Setter Property="BackgroundColor" Value="#FFF" />
+            <Setter Property="Margin" Value="0,5,0,10" />
+        </Style>
+        <!-- DatePicker style -->
+        <Style x:Key="DatePickerStyle" TargetType="DatePicker">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0,5,0,10" />
+        </Style>
+        <!-- Picker style -->
+        <Style x:Key="PickerStyle" TargetType="Picker">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0,5,0,10" />
+        </Style>
+        <!-- Button style -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="BackgroundColor" Value="#007AFF" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="Margin" Value="20,10,20,0" />
+        </Style>
+        <!-- Frame style for card-like container -->
+        <Style x:Key="FrameStyle" TargetType="Frame">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="20" />
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="HasShadow" Value="True" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Label Text="Edit Assessment" Style="{StaticResource HeaderLabelStyle}" />
+
+            <Frame Style="{StaticResource FrameStyle}">
+                <VerticalStackLayout Spacing="15">
+                    <!-- Assessment Title -->
+                    <Label Text="Assessment Title" Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="AssessmentTitle" Placeholder="Assessment Title" Style="{StaticResource EntryStyle}" />
+
+                    <!-- Assessment Date -->
+                    <Label Text="Assessment Date" Style="{StaticResource FieldLabelStyle}" />
+                    <DatePicker x:Name="AssessmentDate" Style="{StaticResource DatePickerStyle}" />
+
+                    <!-- Assessment Type -->
+                    <Label Text="Assessment Type" Style="{StaticResource FieldLabelStyle}" />
+                    <Picker x:Name="AssessmentTypePicker" Style="{StaticResource PickerStyle}">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Objective</x:String>
+                                <x:String>Performance</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+
+                    <!-- Save Button -->
+                    <Button Text="Save Assessment" Style="{StaticResource ButtonStyle}" Clicked="Button_Clicked" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

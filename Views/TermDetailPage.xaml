@@ -2,50 +2,82 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WGU_MobileDevelopment_JMBenitez.Views.TermDetailPage"
-             Title="TermDetailPage">
-    <VerticalStackLayout >
+             Title="Term Detail">
+    <ContentPage.Resources>
+        <!-- Card style for course items -->
+        <Style x:Key="CardStyle" TargetType="Frame">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="15" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="HasShadow" Value="True" />
+        </Style>
 
-        <HorizontalStackLayout Spacing="10" Margin="10" HorizontalOptions="EndAndExpand">
+        <!-- Title label style -->
+        <Style x:Key="TitleLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#333" />
+        </Style>
+
+        <!-- Date label style -->
+        <Style x:Key="DateLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextColor" Value="#666" />
+        </Style>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Margin="20" Spacing="20">
+        <!-- Action Buttons -->
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="EndAndExpand">
             <Button Text="Add Course"
                     x:Name="AddCourseBtn"
-                    Clicked="AddCourseBtn_Clicked"/>   
+                    BackgroundColor="#007AFF"
+                    TextColor="White"
+                    CornerRadius="8"
+                    Padding="10,5"
+                    Clicked="AddCourseBtn_Clicked"/>
             <Button Text="Edit Term"
-             x:Name="EditTermBtn"
-             Clicked="EditTermBtn_Clicked"/>
+                    x:Name="EditTermBtn"
+                    BackgroundColor="#FFA500"
+                    TextColor="White"
+                    CornerRadius="8"
+                    Padding="10,5"
+                    Clicked="EditTermBtn_Clicked"/>
             <Button Text="Delete Term"
-                x:Name="DeleteTermBtn"
-                Clicked="DeleteTermBtn_Clicked"/>
-
-       
+                    x:Name="DeleteTermBtn"
+                    BackgroundColor="#FF3B30"
+                    TextColor="White"
+                    CornerRadius="8"
+                    Padding="10,5"
+                    Clicked="DeleteTermBtn_Clicked"/>
         </HorizontalStackLayout>
 
+        <!-- Spacer -->
         <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
 
-
-
-        <ListView x:Name="CoursesCollectionView"
-                  ItemSelected="CoursesCollectionView_ItemSelected"
-                  ItemTapped="CoursesCollectionView_ItemTapped">
-
-            <ListView.ItemTemplate>
+        <!-- Modern CollectionView for courses -->
+        <CollectionView x:Name="CoursesCollectionView"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <StackLayout>
-                            <StackLayout>
-                                <Label Text="{Binding Title}" 
-                                       FontSize="18" 
-                                       FontAttributes="Bold"/>
-                                <HorizontalStackLayout Spacing="50">
-                                    <Label Text="{Binding StartDate, StringFormat='Start: {0:d}'}"/>
-                                    <Label Text="{Binding EndDate, StringFormat='End: {0:d}'}"/>
-                                </HorizontalStackLayout>
-                            </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
+                    <Frame Style="{StaticResource CardStyle}">
+                        <Frame.GestureRecognizers>
+                            <!-- Tap gesture to navigate to CourseDetailPage -->
+                            <TapGestureRecognizer Tapped="OnCourseTapped"/>
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="{Binding Title}" Style="{StaticResource TitleLabelStyle}" />
+                            <HorizontalStackLayout Spacing="20">
+                                <Label Text="{Binding StartDate, StringFormat='Start: {0:d}'}"
+                                       Style="{StaticResource DateLabelStyle}" />
+                                <Label Text="{Binding EndDate, StringFormat='End: {0:d}'}"
+                                       Style="{StaticResource DateLabelStyle}" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-            
-        </ListView>
-
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>

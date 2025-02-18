@@ -1,47 +1,109 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:WGU_MobileDevelopment_JMBenitez.Views"
-             x:Class="WGU_MobileDevelopment_JMBenitez.Views.EditCoursePage"
-             Title="Edit Course">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:WGU_MobileDevelopment_JMBenitez.Views"
+    x:Class="WGU_MobileDevelopment_JMBenitez.Views.EditCoursePage"
+    Title="Edit Course">
+
+    <ContentPage.Resources>
+        <!-- Header label style -->
+        <Style x:Key="HeaderLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="TextColor" Value="#007AFF" />
+            <Setter Property="Margin" Value="0,0,0,20" />
+        </Style>
+        <!-- Field label style -->
+        <Style x:Key="FieldLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="TextColor" Value="#333" />
+        </Style>
+        <!-- Entry style -->
+        <Style x:Key="EntryStyle" TargetType="Entry">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextColor" Value="#333" />
+            <Setter Property="BackgroundColor" Value="#FFF" />
+            <Setter Property="Margin" Value="0,5,0,10" />
+        </Style>
+        <!-- DatePicker style -->
+        <Style x:Key="DatePickerStyle" TargetType="DatePicker">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0,5,0,10" />
+        </Style>
+        <!-- Picker style -->
+        <Style x:Key="PickerStyle" TargetType="Picker">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0,5,0,10" />
+        </Style>
+        <!-- Button style -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="BackgroundColor" Value="#007AFF" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="Margin" Value="20,10,20,0" />
+        </Style>
+        <!-- Frame style for card-like container -->
+        <Style x:Key="FrameStyle" TargetType="Frame">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="20" />
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="HasShadow" Value="True" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+    </ContentPage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout Padding="10">
-            <Label Text="Title" />
-            <Entry x:Name="TitleEntry" Placeholder="Enter course title" Text="{Binding Title}" />
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <Label Text="Edit Course" Style="{StaticResource HeaderLabelStyle}" />
 
-            <Label Text="Start Date" />
-            <DatePicker x:Name="StartDatePicker" Date="{Binding StartDate}" />
+            <Frame Style="{StaticResource FrameStyle}">
+                <VerticalStackLayout Spacing="15">
+                    <!-- Course Title -->
+                    <Label Text="Title" Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="TitleEntry" Placeholder="Enter course title" Text="{Binding Title}" Style="{StaticResource EntryStyle}" />
 
-            <Label Text="End Date" />
-            <DatePicker x:Name="EndDatePicker" Date="{Binding EndDate}" />
+                    <!-- Start Date -->
+                    <Label Text="Start Date" Style="{StaticResource FieldLabelStyle}" />
+                    <DatePicker x:Name="StartDatePicker" Date="{Binding StartDate}" Style="{StaticResource DatePickerStyle}" />
 
-            <Label Text="Status" />
-            <Picker x:Name="StatusPicker" SelectedItem="{Binding Status}">
-                <Picker.Items>
-                    <x:String>Planned</x:String>
-                    <x:String>In Progress</x:String>
-                    <x:String>Completed</x:String>
-                    <x:String>Dropped</x:String>
-                </Picker.Items>
-            </Picker>
+                    <!-- End Date -->
+                    <Label Text="End Date" Style="{StaticResource FieldLabelStyle}" />
+                    <DatePicker x:Name="EndDatePicker" Date="{Binding EndDate}" Style="{StaticResource DatePickerStyle}" />
 
-            <Label Text="Instructor Name" />
-            <Entry x:Name="InstructorNameEntry" Placeholder="Enter instructor name" Text="{Binding InstructorName}" />
+                    <!-- Status -->
+                    <Label Text="Status" Style="{StaticResource FieldLabelStyle}" />
+                    <Picker x:Name="StatusPicker" SelectedItem="{Binding Status}" Style="{StaticResource PickerStyle}">
+                        <Picker.Items>
+                            <x:String>Planned</x:String>
+                            <x:String>In Progress</x:String>
+                            <x:String>Completed</x:String>
+                            <x:String>Dropped</x:String>
+                        </Picker.Items>
+                    </Picker>
 
-            <Label Text="Instructor Phone" />
-            <Entry x:Name="InstructorPhoneEntry" Placeholder="Enter instructor phone" Keyboard="Telephone" Text="{Binding InstructorPhone}" />
+                    <!-- Instructor Name -->
+                    <Label Text="Instructor Name" Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="InstructorNameEntry" Placeholder="Enter instructor name" Text="{Binding InstructorName}" Style="{StaticResource EntryStyle}" />
 
-            <Label Text="Instructor Email" />
-            <Entry x:Name="InstructorEmailEntry" Placeholder="Enter instructor email" Keyboard="Email" Text="{Binding InstructorEmail}" />
+                    <!-- Instructor Phone -->
+                    <Label Text="Instructor Phone" Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="InstructorPhoneEntry" Placeholder="Enter instructor phone" Keyboard="Telephone" Text="{Binding InstructorPhone}" Style="{StaticResource EntryStyle}" />
 
-            <Label Text="Notes" />
-            <Entry x:Name="NotesEditor" Placeholder="Enter notes"  Text="{Binding Notes}" />
+                    <!-- Instructor Email -->
+                    <Label Text="Instructor Email" Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="InstructorEmailEntry" Placeholder="Enter instructor email" Keyboard="Email" Text="{Binding InstructorEmail}" Style="{StaticResource EntryStyle}" />
 
-            <Button Text="Save" VerticalOptions="End" HorizontalOptions="Center"  Clicked="Button_Clicked"   />
+                    <!-- Notes -->
+                    <Label Text="Notes" Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="NotesEditor" Placeholder="Enter notes" Text="{Binding Notes}" Style="{StaticResource EntryStyle}" />
+
+                    <!-- Save Button -->
+                    <Button Text="Save" Style="{StaticResource ButtonStyle}" Clicked="Button_Clicked" />
+                </VerticalStackLayout>
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
-    
-    
-    

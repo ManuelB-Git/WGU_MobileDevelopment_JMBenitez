@@ -5,8 +5,9 @@ namespace WGU_MobileDevelopment_JMBenitez.Views;
 
 public partial class AddAssesspementPage : ContentPage
 {
-    Course course;
-    Assessment? assessment; // Make assessment nullable
+    private Course course;
+    Assessment? assessment; // Nullable assessment
+
     public AddAssesspementPage(Course course)
     {
         InitializeComponent();
@@ -45,8 +46,8 @@ public partial class AddAssesspementPage : ContentPage
         await Navigation.PopAsync();
     }
 
+    // Unused event handler – can be removed or implemented as needed.
     private void Button_Clicked_1(object sender, EventArgs e)
     {
-
     }
 }

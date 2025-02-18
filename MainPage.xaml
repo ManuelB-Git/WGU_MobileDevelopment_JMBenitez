@@ -2,55 +2,76 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:models="clr-namespace:WGU_MobileDevelopment_JMBenitez.Models"
-             xmlns:services="clr-namespace:WGU_MobileDevelopment_JMBenitez.Services"
+             x:Class="WGU_MobileDevelopment_JMBenitez.MainPage"
+             BackgroundColor="#F5F5F5">
 
+    <ContentPage.Resources>
+        <!-- Define some basic styles -->
+        <Style x:Key="CardStyle" TargetType="Frame">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="15" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="HasShadow" Value="True" />
+        </Style>
 
-             x:Class="WGU_MobileDevelopment_JMBenitez.MainPage">
+        <Style x:Key="TitleLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#333" />
+        </Style>
 
-    <VerticalStackLayout Margin="20"
-                         Spacing="20">
-        
-            <Button
-            x:Name="AddTermBtn"
-            HorizontalOptions="End"
-            Text="Add Term"
-            Clicked="AddTermBtn_Clicked"/>
-            
-            
-        
-        <Label Text="Terms"/>
+        <Style x:Key="DateLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextColor" Value="#666" />
+        </Style>
+    </ContentPage.Resources>
 
-        <ListView  x:Name="TermsCollectionView"
-                  ItemSelected="TermsCollectionView_ItemSelected"
-                  ItemTapped="TermsCollectionView_ItemTapped">
-            <ListView.ItemTemplate>
-                <DataTemplate >
+    <VerticalStackLayout Margin="20" Spacing="20">
 
-                    <ViewCell>
-                        <StackLayout>
-                            <StackLayout >
-                                
-                                
-                            <Label Text="{Binding Title}" 
-                                   FontSize="18" 
-                                   FontAttributes="Bold"/>
+        <!-- Top Button -->
+        <Button x:Name="AddTermBtn"
+                HorizontalOptions="End"
+                Text="Add Term"
+                BackgroundColor="#007AFF"
+                TextColor="White"
+                CornerRadius="8"
+                Padding="10,5"
+                Clicked="AddTermBtn_Clicked"/>
 
-                                <HorizontalStackLayout Spacing="50">
-                                    <Label Text="{Binding StartDate, StringFormat='Start: {0:d}'}"/>
-                                    <Label Text="{Binding EndDate, StringFormat='Start: {0:d}'}"/>
-                                </HorizontalStackLayout>
+        <!-- Header Label -->
+        <Label Text="Terms"
+               FontSize="24"
+               FontAttributes="Bold"
+               TextColor="#007AFF" />
 
-                        
+        <!-- Modern CollectionView for the list of terms -->
+        <CollectionView x:Name="TermsCollectionView"
+                SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Style="{StaticResource CardStyle}">
+                        <Frame.GestureRecognizers>
+                            <!-- Add the tap gesture handler -->
+                            <TapGestureRecognizer Tapped="OnTermTapped" />
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout Spacing="10">
+                            <!-- Title -->
+                            <Label Text="{Binding Title}" Style="{StaticResource TitleLabelStyle}" />
 
-                                
-                            </StackLayout>
-                        </StackLayout>
-
-                    </ViewCell>
-                    
+                            <!-- Dates -->
+                            <HorizontalStackLayout Spacing="20">
+                                <Label Text="{Binding StartDate, StringFormat='Start: {0:d}'}"
+                               Style="{StaticResource DateLabelStyle}" />
+                                <Label Text="{Binding EndDate, StringFormat='End: {0:d}'}"
+                               Style="{StaticResource DateLabelStyle}" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
     </VerticalStackLayout>
 </ContentPage>

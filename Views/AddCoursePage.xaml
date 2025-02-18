@@ -1,88 +1,122 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WGU_MobileDevelopment_JMBenitez.Views.AddCoursePage"
-             Title="AddCoursePage">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="WGU_MobileDevelopment_JMBenitez.Views.AddCoursePage"
+    Title="Add Course">
+
+    <ContentPage.Resources>
+        <!-- Header label style -->
+        <Style x:Key="HeaderLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="TextColor" Value="#007AFF" />
+        </Style>
+        <!-- Subheader label style -->
+        <Style x:Key="SubHeaderLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="TextColor" Value="#333" />
+        </Style>
+        <!-- Entry style -->
+        <Style x:Key="EntryStyle" TargetType="Entry">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextColor" Value="#333" />
+            <Setter Property="BackgroundColor" Value="#FFF" />
+            <Setter Property="Margin" Value="0,5,0,5" />
+        </Style>
+        <!-- DatePicker style -->
+        <Style x:Key="DatePickerStyle" TargetType="DatePicker">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0,5,0,5" />
+        </Style>
+        <!-- Picker style -->
+        <Style x:Key="PickerStyle" TargetType="Picker">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0,5,0,5" />
+        </Style>
+        <!-- Button style -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="BackgroundColor" Value="#007AFF" />
+            <Setter Property="Margin" Value="0,10,0,0" />
+        </Style>
+        <!-- Frame style for card-like container -->
+        <Style x:Key="FrameStyle" TargetType="Frame">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="20" />
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="HasShadow" Value="True" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+    </ContentPage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout Padding="20"
-                             Spacing="20"
-                             HorizontalOptions="Center">
-            <HorizontalStackLayout Spacing="20">
-                <Label Text="Course Title"
-                       VerticalOptions="Center"/>
-                <Entry  x:Name="CourseTitleEntry"
-                        VerticalOptions="Center"
-                        HorizontalOptions="FillAndExpand"/>
-            </HorizontalStackLayout >
-            <HorizontalStackLayout Spacing="20">
-                <Label Text="Course Start Date"
-                       VerticalOptions="Center"/>
-                <DatePicker x:Name="StartDateEntry"
-                            VerticalOptions="Center"
-                            HorizontalOptions="FillAndExpand"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout Spacing="20">
-                <Label Text="Course End Date"
-                       VerticalOptions="Center"/>
-                <DatePicker x:Name="EndDateEntry"
-                            VerticalOptions="Center"
-                            HorizontalOptions="FillAndExpand"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout Spacing="20">
-                <Label Text="Course Status"
-                       VerticalOptions="Center"/>
-                <Picker x:Name="StatusPicker"
-                        VerticalOptions="Center"
-                        HorizontalOptions="FillAndExpand">
-                    <Picker.Items>
-                        <x:String>Not Started</x:String>
-                        <x:String>In Progress</x:String>
-                        <x:String>Completed</x:String>
-                        <x:String>Dropped</x:String>
-                    </Picker.Items>
-                </Picker>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout Spacing="20">
-                <Label Text="Course Instructor"
-                       VerticalOptions="Center"/>
-                <Entry  x:Name="InstructorEntry"
-                        VerticalOptions="Center"
-                        HorizontalOptions="FillAndExpand"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout Spacing="20">
-                <Label Text="Instructor Phone"
-                       VerticalOptions="Center"/>
-                <Entry  x:Name="InstructorPhoneEntry"
-                        VerticalOptions="Center"
-                        HorizontalOptions="FillAndExpand"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout Spacing="20">
-                <Label Text="Instructor Email"
-                       VerticalOptions="Center"/>
-                <Entry  x:Name="InstructorEmailEntry"
-                        VerticalOptions="Center"
-                        HorizontalOptions="FillAndExpand"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout Spacing="20">
-                <Label Text="Notes"
-                       VerticalOptions="Center"/>
-                <Entry x:Name="NotesEntry"
-                        VerticalOptions="Center"
-                        HorizontalOptions="FillAndExpand"
-                        WidthRequest="200"
-                        HeightRequest="50"/>
-            </HorizontalStackLayout>
-            
-            <Button 
-                x:Name="SaveBtn"
-                Text="Save"
-                VerticalOptions="End"
-                HorizontalOptions="Center"
-                Clicked="SaveBtn_Clicked"/>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Label Text="Add New Course" Style="{StaticResource HeaderLabelStyle}" />
+
+            <Frame Style="{StaticResource FrameStyle}">
+                <VerticalStackLayout Spacing="15">
+                    <!-- Course Title -->
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Label Text="Course Title" Style="{StaticResource SubHeaderLabelStyle}" VerticalOptions="Center" />
+                        <Entry x:Name="CourseTitleEntry" Style="{StaticResource EntryStyle}" HorizontalOptions="FillAndExpand" />
+                    </HorizontalStackLayout>
+
+                    <!-- Course Start Date -->
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Label Text="Course Start Date" Style="{StaticResource SubHeaderLabelStyle}" VerticalOptions="Center" />
+                        <DatePicker x:Name="StartDateEntry" Style="{StaticResource DatePickerStyle}" HorizontalOptions="FillAndExpand" />
+                    </HorizontalStackLayout>
+
+                    <!-- Course End Date -->
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Label Text="Course End Date" Style="{StaticResource SubHeaderLabelStyle}" VerticalOptions="Center" />
+                        <DatePicker x:Name="EndDateEntry" Style="{StaticResource DatePickerStyle}" HorizontalOptions="FillAndExpand" />
+                    </HorizontalStackLayout>
+
+                    <!-- Course Status -->
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Label Text="Course Status" Style="{StaticResource SubHeaderLabelStyle}" VerticalOptions="Center" />
+                        <Picker x:Name="StatusPicker" Style="{StaticResource PickerStyle}" HorizontalOptions="FillAndExpand">
+                            <Picker.Items>
+                                <x:String>Not Started</x:String>
+                                <x:String>In Progress</x:String>
+                                <x:String>Completed</x:String>
+                                <x:String>Dropped</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </HorizontalStackLayout>
+
+                    <!-- Course Instructor -->
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Label Text="Course Instructor" Style="{StaticResource SubHeaderLabelStyle}" VerticalOptions="Center" />
+                        <Entry x:Name="InstructorEntry" Style="{StaticResource EntryStyle}" HorizontalOptions="FillAndExpand" />
+                    </HorizontalStackLayout>
+
+                    <!-- Instructor Phone -->
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Label Text="Instructor Phone" Style="{StaticResource SubHeaderLabelStyle}" VerticalOptions="Center" />
+                        <Entry x:Name="InstructorPhoneEntry" Style="{StaticResource EntryStyle}" HorizontalOptions="FillAndExpand" />
+                    </HorizontalStackLayout>
+
+                    <!-- Instructor Email -->
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Label Text="Instructor Email" Style="{StaticResource SubHeaderLabelStyle}" VerticalOptions="Center" />
+                        <Entry x:Name="InstructorEmailEntry" Style="{StaticResource EntryStyle}" HorizontalOptions="FillAndExpand" />
+                    </HorizontalStackLayout>
+
+                    <!-- Course Notes -->
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Label Text="Notes" Style="{StaticResource SubHeaderLabelStyle}" VerticalOptions="Center" />
+                        <Entry x:Name="NotesEntry" Style="{StaticResource EntryStyle}" HorizontalOptions="FillAndExpand" HeightRequest="50" />
+                    </HorizontalStackLayout>
+
+                    <!-- Save Button -->
+                    <Button x:Name="SaveBtn" Text="Save" Style="{StaticResource ButtonStyle}" HorizontalOptions="Center" Clicked="SaveBtn_Clicked"/>
+                </VerticalStackLayout>
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
-    
 </ContentPage>
-    
-    

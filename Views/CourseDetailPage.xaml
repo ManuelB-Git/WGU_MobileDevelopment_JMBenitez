@@ -1,56 +1,119 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WGU_MobileDevelopment_JMBenitez.Views.CourseDetailPage"
-             Title="CourseDetailPage">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="WGU_MobileDevelopment_JMBenitez.Views.CourseDetailPage"
+    Title="Course Detail">
 
-    <VerticalStackLayout >
-        <HorizontalStackLayout Spacing="10" Margin="10" HorizontalOptions="EndAndExpand">
-            <Button Text="Add Assessment"
-                    x:Name="AddAssessmentBtn"
-                    Clicked="AddAssessmentBtn_Clicked" />
-            <Button Text="Edit Course"
-             x:Name="EditCourseBtn"
-             Clicked="EditCourseBtn_Clicked"/>
-            <Button Text="Delete Course"
-                x:Name="DeleteCourseBtn"
-                Clicked="DeleteCourseBtn_Clicked"/>
-        </HorizontalStackLayout>
-        <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
-        <StackLayout>
-            <Label Text="{Binding Title}" 
-                   FontSize="18" 
-                   FontAttributes="Bold"/>
-            <HorizontalStackLayout Spacing="50">
-                <Label Text="{Binding StartDate, StringFormat='Start: {0:d}'}"/>
-                <Label Text="{Binding EndDate, StringFormat='End: {0:d}'}"/>
+    <ContentPage.Resources>
+        <!-- Card style for wrapping sections -->
+        <Style x:Key="CardStyle" TargetType="Frame">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="15" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="HasShadow" Value="True" />
+        </Style>
+        <!-- Title label style -->
+        <Style x:Key="TitleLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#333" />
+        </Style>
+        <!-- Detail label style -->
+        <Style x:Key="DetailLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextColor" Value="#555" />
+        </Style>
+        <!-- Bold section header style -->
+        <Style x:Key="SectionHeaderStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#007AFF" />
+        </Style>
+        <!-- Button style -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Margin="20" Spacing="20">
+            <!-- Action Buttons -->
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="EndAndExpand">
+                <Button Text="Add Assessment"
+                        x:Name="AddAssessmentBtn"
+                        Style="{StaticResource ButtonStyle}"
+                        BackgroundColor="#007AFF"
+                        Clicked="AddAssessmentBtn_Clicked" />
+                <Button Text="Edit Course"
+                        x:Name="EditCourseBtn"
+                        Style="{StaticResource ButtonStyle}"
+                        BackgroundColor="#FFA500"
+                        Clicked="EditCourseBtn_Clicked" />
+                <Button Text="Delete Course"
+                        x:Name="DeleteCourseBtn"
+                        Style="{StaticResource ButtonStyle}"
+                        BackgroundColor="#FF3B30"
+                        Clicked="DeleteCourseBtn_Clicked" />
             </HorizontalStackLayout>
-        </StackLayout>
-        <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
-        <Label Text="Course Status"/>
-        <Label Text="{Binding Status}"/>
-        <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
-        <Label Text="Course Instructor"/>
-        <Label Text="{Binding InstructorName}"/>
-        <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
-        <Label Text="Instructor Phone"/>
-        <Label Text="{Binding InstructorPhone}"/>
-        <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
-        <Label Text="Instructor Email"/>
-        <Label Text="{Binding InstructorEmail}"/>
-        <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
-        <Label Text="Course Notes"/>
-        <Label Text="{Binding Notes}"/>
-        <Button Text="Share Notes"
-                x:Name="ShareNotesBtn"
-                Clicked ="ShareNotesBtn_Clicked"/>
-        <BoxView HeightRequest="50" BackgroundColor="Transparent"/>
 
-        <Button Text="Assessments" Clicked="Button_Clicked"/>
-        <Label
-            x:Name="AssessmentNotification"/>
-    </VerticalStackLayout>
+            <!-- Course Basic Info -->
+            <Frame Style="{StaticResource CardStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="{Binding Title}" Style="{StaticResource TitleLabelStyle}" />
+                    <HorizontalStackLayout Spacing="20">
+                        <Label Text="{Binding StartDate, StringFormat='Start: {0:d}'}" Style="{StaticResource DetailLabelStyle}" />
+                        <Label Text="{Binding EndDate, StringFormat='End: {0:d}'}" Style="{StaticResource DetailLabelStyle}" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
 
+            <!-- Course Status -->
+            <Frame Style="{StaticResource CardStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Course Status" Style="{StaticResource SectionHeaderStyle}" />
+                    <Label Text="{Binding Status}" Style="{StaticResource DetailLabelStyle}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Instructor Details -->
+            <Frame Style="{StaticResource CardStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Course Instructor" Style="{StaticResource SectionHeaderStyle}" />
+                    <Label Text="{Binding InstructorName}" Style="{StaticResource DetailLabelStyle}" />
+                    <Label Text="Instructor Phone" Style="{StaticResource SectionHeaderStyle}" />
+                    <Label Text="{Binding InstructorPhone}" Style="{StaticResource DetailLabelStyle}" />
+                    <Label Text="Instructor Email" Style="{StaticResource SectionHeaderStyle}" />
+                    <Label Text="{Binding InstructorEmail}" Style="{StaticResource DetailLabelStyle}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Course Notes -->
+            <Frame Style="{StaticResource CardStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Course Notes" Style="{StaticResource SectionHeaderStyle}" />
+                    <Label Text="{Binding Notes}" Style="{StaticResource DetailLabelStyle}" />
+                    <Button Text="Share Notes"
+                            x:Name="ShareNotesBtn"
+                            Style="{StaticResource ButtonStyle}"
+                            BackgroundColor="#007AFF"
+                            Clicked="ShareNotesBtn_Clicked" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Assessments Section -->
+            <Frame Style="{StaticResource CardStyle}">
+                <VerticalStackLayout Spacing="10">
+                    <Button Text="Assessments"
+                            Style="{StaticResource ButtonStyle}"
+                            BackgroundColor="#007AFF"
+                            Clicked="Button_Clicked" />
+                    <Label x:Name="AssessmentNotification" Style="{StaticResource DetailLabelStyle}" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
-    
-    

@@ -5,17 +5,15 @@ namespace WGU_MobileDevelopment_JMBenitez.Views;
 
 public partial class EditTermPage : ContentPage
 {
-    Term TermToEdit;
+    private Term TermToEdit;
 
     public EditTermPage(Term term)
     {
         InitializeComponent();
-
         TermToEdit = term;
-        OnAppearing();
     }
 
-    // Populate the fields with the term's data
+    // Populate the fields with the term's data.
     protected override void OnAppearing()
     {
         base.OnAppearing();
@@ -36,5 +34,8 @@ public partial class EditTermPage : ContentPage
         TermToEdit.StartDate = StartDateEntry.Date;
         TermToEdit.EndDate = EndDateEntry.Date;
         await DatabaseService.UpdateTermAsync(TermToEdit);
+
+        // Optionally navigate back after saving
+        await Navigation.PopAsync();
     }
 }

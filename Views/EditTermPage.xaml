@@ -1,34 +1,76 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WGU_MobileDevelopment_JMBenitez.Views.EditTermPage"
-             Title="EditTermPage">
-    <VerticalStackLayout Padding="20"
-                         Spacing="50"
-                         HorizontalOptions="Center">
-        <HorizontalStackLayout Spacing="20">
-            <Label Text="Term Title"
-                   VerticalOptions="Center"/>
-            <Entry  x:Name="TermTitleEntry"
-                    VerticalOptions="Center"/>
-        </HorizontalStackLayout >
-        <HorizontalStackLayout Spacing="20">
-            <Label Text="Term Start Date"
-                   VerticalOptions="Center"/>
-            <DatePicker x:Name="StartDateEntry"
-                        VerticalOptions="Center"/>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="WGU_MobileDevelopment_JMBenitez.Views.EditTermPage"
+    Title="Edit Term">
 
-        </HorizontalStackLayout>
-        <HorizontalStackLayout Spacing="20">
-            <Label Text="Term End Date"
-                   VerticalOptions="Center"/>
-            <DatePicker x:Name="EndDateEntry"
-                        VerticalOptions="Center"/>
-        </HorizontalStackLayout>
-        <Button 
-            x:Name="SaveBtn"
-            Text="Save"
-            Clicked="SaveBtn_Clicked"/>
+    <ContentPage.Resources>
+        <!-- Header label style -->
+        <Style x:Key="HeaderLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="TextColor" Value="#007AFF" />
+            <Setter Property="Margin" Value="0,0,0,20" />
+        </Style>
+        <!-- Field label style -->
+        <Style x:Key="FieldLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="TextColor" Value="#333" />
+        </Style>
+        <!-- Entry style -->
+        <Style x:Key="EntryStyle" TargetType="Entry">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextColor" Value="#333" />
+            <Setter Property="BackgroundColor" Value="#FFF" />
+            <Setter Property="Margin" Value="0,5,0,10" />
+        </Style>
+        <!-- DatePicker style -->
+        <Style x:Key="DatePickerStyle" TargetType="DatePicker">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0,5,0,10" />
+        </Style>
+        <!-- Button style -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="BackgroundColor" Value="#007AFF" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="Margin" Value="20,10,20,0" />
+        </Style>
+        <!-- Frame style for card-like container -->
+        <Style x:Key="FrameStyle" TargetType="Frame">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="20" />
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="HasShadow" Value="True" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+    </ContentPage.Resources>
 
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Label Text="Edit Term" Style="{StaticResource HeaderLabelStyle}" />
+
+            <Frame Style="{StaticResource FrameStyle}">
+                <VerticalStackLayout Spacing="15">
+                    <!-- Term Title -->
+                    <Label Text="Term Title" Style="{StaticResource FieldLabelStyle}" />
+                    <Entry x:Name="TermTitleEntry" Placeholder="Enter term title" Style="{StaticResource EntryStyle}" />
+
+                    <!-- Start Date -->
+                    <Label Text="Term Start Date" Style="{StaticResource FieldLabelStyle}" />
+                    <DatePicker x:Name="StartDateEntry" Style="{StaticResource DatePickerStyle}" />
+
+                    <!-- End Date -->
+                    <Label Text="Term End Date" Style="{StaticResource FieldLabelStyle}" />
+                    <DatePicker x:Name="EndDateEntry" Style="{StaticResource DatePickerStyle}" />
+
+                    <!-- Save Button -->
+                    <Button Text="Save" Style="{StaticResource ButtonStyle}" Clicked="SaveBtn_Clicked" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

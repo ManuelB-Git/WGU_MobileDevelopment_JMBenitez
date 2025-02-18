@@ -2,22 +2,20 @@
 using WGU_MobileDevelopment_JMBenitez.Models;
 using WGU_MobileDevelopment_JMBenitez.Services;
 using WGU_MobileDevelopment_JMBenitez.Views;
+
 namespace WGU_MobileDevelopment_JMBenitez
 {
     public partial class MainPage : ContentPage
     {
-        // ObservableCollection is a collection that provides notifications when items get added, removed, or when the whole list is refreshed.
         public ObservableCollection<Term> Terms { get; set; } = new ObservableCollection<Term>();
 
-        //The Main Page
         public MainPage()
         {
             InitializeComponent();
-
             TermsCollectionView.ItemsSource = Terms;
         }
 
-        //Loads data from the database and updates the observable collection.
+        // Loads data from the database and updates the observable collection.
         private async Task LoadTermsAsync()
         {
             Terms.Clear();
@@ -26,47 +24,42 @@ namespace WGU_MobileDevelopment_JMBenitez
             {
                 Terms.Add(term);
             }
-
         }
 
-        //When the page appears, refresh the page.
-
-
-        // Method for the add term button. This will navigate to the AddTermPage.
+        // Method for the add term button.
         private async void AddTermBtn_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddTermPage());
         }
 
-
-        //Method will go to the TermDetailPage and pass the selected term.
-
-        private void TermsCollectionView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        // New event handler for tapping on a term (via TapGestureRecognizer).
+        private async void OnTermTapped(object sender, EventArgs e)
         {
-            if (e.SelectedItem is Term term)
+            if (sender is Frame frame && frame.BindingContext is Term tappedTerm)
             {
-                Navigation.PushAsync(new TermDetailPage(term));
+                await Navigation.PushAsync(new TermDetailPage(tappedTerm));
             }
-
         }
 
-        //Method will clear the selected item.
-        private void TermsCollectionView_ItemTapped(object sender, ItemTappedEventArgs e)
+        // Optional: You can still handle SelectionChanged if needed.
+        private async void TermsCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TermsCollectionView.SelectedItem = null;
-
+            if (e.CurrentSelection is IList<object> currentSelection && currentSelection.Count > 0)
+            {
+                if (currentSelection[0] is Term selectedTerm)
+                {
+                    // Clear the selection so the same item can be tapped again.
+                    ((CollectionView)sender).SelectedItem = null;
+                    await Navigation.PushAsync(new TermDetailPage(selectedTerm));
+                }
+            }
         }
-        protected override void OnAppearing()
+
+        // When the page appears, refresh the list.
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
-            LoadTermsAsync().ConfigureAwait(false);
+            await LoadTermsAsync();
         }
-
-
-
-
-
-
     }
-
 }

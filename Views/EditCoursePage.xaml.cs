@@ -12,11 +12,10 @@ public partial class EditCoursePage : ContentPage
     {
         InitializeComponent();
         _course = course;
-
         BindingContext = _course;
     }
 
-    //Save the course
+    // Save the course after performing validations.
     private async void Button_Clicked(object sender, EventArgs e)
     {
         if (string.IsNullOrWhiteSpace(TitleEntry.Text) ||
@@ -46,6 +45,7 @@ public partial class EditCoursePage : ContentPage
             return;
         }
 
+        // Update the course object with new values.
         _course.Title = TitleEntry.Text;
         _course.StartDate = StartDatePicker.Date;
         _course.EndDate = EndDatePicker.Date;
@@ -54,6 +54,8 @@ public partial class EditCoursePage : ContentPage
         _course.InstructorPhone = InstructorPhoneEntry.Text;
         _course.InstructorEmail = InstructorEmailEntry.Text;
         _course.Notes = NotesEditor.Text;
+
+        // Save updates to the database.
         await DatabaseService.UpdateCourseAsync(_course);
         await Navigation.PopAsync();
     }

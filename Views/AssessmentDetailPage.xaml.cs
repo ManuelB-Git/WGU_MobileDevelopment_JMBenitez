@@ -1,5 +1,4 @@
 using System.Collections.ObjectModel;
-using System.Linq;
 using WGU_MobileDevelopment_JMBenitez.Models;
 using WGU_MobileDevelopment_JMBenitez.Services;
 
@@ -8,14 +7,12 @@ namespace WGU_MobileDevelopment_JMBenitez.Views;
 public partial class AssessmentDetailPage : ContentPage
 {
     private ObservableCollection<Assessment> assessments = new();
-    private Course course = new();
+    private Course course;
 
     public AssessmentDetailPage(Course course)
     {
         InitializeComponent();
         this.course = course;
-     
- 
     }
 
     protected override async void OnAppearing()
@@ -23,13 +20,12 @@ public partial class AssessmentDetailPage : ContentPage
         base.OnAppearing();
         var assessmentsFromDb = await DatabaseService.GetAssessmentsByCourseAsync(course.Id);
 
-        // Fixing the errors by converting the list to ObservableCollection
+        // Convert the list to an ObservableCollection for dynamic updates.
         assessments = new ObservableCollection<Assessment>(assessmentsFromDb);
         AssessmentsCollectionView.ItemsSource = assessments;
     }
 
-
-    //Edit the assessment associated with
+    // Edit the selected assessment.
     private void EditBtn_Clicked(object sender, EventArgs e)
     {
         var assessment = (sender as Button)?.BindingContext as Assessment;
@@ -37,11 +33,9 @@ public partial class AssessmentDetailPage : ContentPage
         {
             Navigation.PushAsync(new NewPage1(assessment));
         }
-
     }
 
-
-    //Delete the assessment associated with
+    // Delete the selected assessment.
     private async void DeleteBtn_Clicked(object sender, EventArgs e)
     {
         var assessment = (sender as Button)?.BindingContext as Assessment;

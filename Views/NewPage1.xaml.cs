@@ -5,18 +5,18 @@ namespace WGU_MobileDevelopment_JMBenitez.Views;
 
 public partial class NewPage1 : ContentPage
 {
-    Assessment assessmenttoedit;
+    private Assessment assessmenttoedit;
+
     public NewPage1(Assessment assessment)
     {
         InitializeComponent();
         assessmenttoedit = assessment;
         BindingContext = assessmenttoedit;
 
-        //Populate the entries
-        AssessmentTitle.Text = assessment.Name;
-        AssessmentTypePicker.SelectedItem = assessment.Type;
-        AssessmentDate.Date = assessment.DueDate;
-
+        // Populate the fields with the current assessment values.
+        AssessmentTitle.Text = assessmenttoedit.Name;
+        AssessmentTypePicker.SelectedItem = assessmenttoedit.Type;
+        AssessmentDate.Date = assessmenttoedit.DueDate;
     }
 
     private async void Button_Clicked(object sender, EventArgs e)
@@ -31,11 +31,14 @@ public partial class NewPage1 : ContentPage
             await DisplayAlert("Validation Error", "Please select an assessment type.", "OK");
             return;
         }
+        // If you need to check against the course's end date, consider using an external value.
+        // The current check compares the new date with the existing due date.
         if (AssessmentDate.Date >= assessmenttoedit.DueDate)
         {
-            await DisplayAlert("Validation Error", "Assessment due date must be before the course end date.", "OK");
+            await DisplayAlert("Validation Error", "Assessment due date must be before the current due date.", "OK");
             return;
         }
+
         assessmenttoedit.Name = AssessmentTitle.Text;
         assessmenttoedit.Type = AssessmentTypePicker.SelectedItem?.ToString() ?? string.Empty;
         assessmenttoedit.DueDate = AssessmentDate.Date;
